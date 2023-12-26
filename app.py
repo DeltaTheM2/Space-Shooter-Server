@@ -55,11 +55,11 @@ while my_run.status in ["queued", "in_progress"]:
       print(f"Run status: {keep_retrieving_run.status}")
       break
 
-# app = Flask(__name__)
-# CORS(app)
-
-# @app.route("/query/<query>")
-# def respondToQuery(query):
-#   if query == lastQuery:
+app = Flask(__name__)
+CORS(app)
+@app.route("/query/<query>")
+def respondToQuery(query):
+ if query == lastQuery:
+    print("same thing is going to go through")
 
     
