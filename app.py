@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request
 import openai
+import os
 
+OpenaiApiKey = os.environ.get('OpenaiApiKey')
 client = openai.Client(api_key=OpenaiApiKey)
 
 my_assistant = client.beta.assistants.retrieve("asst_7bHMEyumWTDCjprU3gpBjVqs")
