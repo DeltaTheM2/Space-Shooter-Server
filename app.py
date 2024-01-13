@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 import openai
 
-client = openai.Client(api_key="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")
+client = openai.Client(api_key=OpenaiApiKey)
 
 my_assistant = client.beta.assistants.retrieve("asst_7bHMEyumWTDCjprU3gpBjVqs")
 #print(my_assistant)
