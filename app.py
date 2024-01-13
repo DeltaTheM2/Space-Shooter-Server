@@ -47,7 +47,7 @@ while my_run.status in ["queued", "in_progress"]:
 
       print("------------------------------------------------------------ \n")
 
-      print(client.beta.threads.messages.list(thread_id=thread.id))
+      print(client.beta.threads.messages.list(thread_id=my_thread.id))
       break
   elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
       pass
