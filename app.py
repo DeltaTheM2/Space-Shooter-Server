@@ -6,17 +6,7 @@ OpenaiApiKey = os.environ.get('OpenaiApiKey')
 client = openai.Client(api_key=OpenaiApiKey)
 
 my_assistant = client.beta.assistants.retrieve("asst_7bHMEyumWTDCjprU3gpBjVqs")
-#print(my_assistant)
-# lastQuery = ""
-# def createThread(query):
-#   run = client.beta.threads.create(
-#     messages=[
-#       {
-#         "role": "user",
-#         "content": query
-#       }
-#     ]
-#   )
+
 my_thread = client.beta.threads.create()
 
 my_message = client.beta.threads.messages.create(
@@ -56,10 +46,8 @@ while my_run.status in ["queued", "in_progress"]:
       break
 
 app = Flask(__name__)
-CORS(app)
 @app.route("/query/<query>")
 def respondToQuery(query):
- if query == lastQuery:
     print("same thing is going to go through")
 
     
