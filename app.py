@@ -31,22 +31,22 @@ def respondToQuery(query):
       )
         print(f"Run status: {keep_retrieving_run.status}")
 
-      if keep_retrieving_run.status == "completed":
-        print("\n")
+        if keep_retrieving_run.status == "completed":
+          print("\n")
 
-        # Step 6: Retrieve the Messages added by the Assistant to the Thread
-        all_messages = client.beta.threads.messages.list(
-            thread_id=my_thread.id
-        )
+          # Step 6: Retrieve the Messages added by the Assistant to the Thread
+          all_messages = client.beta.threads.messages.list(
+              thread_id=my_thread.id
+          )
 
-        print("------------------------------------------------------------ \n")
+          print("------------------------------------------------------------ \n")
 
-        print(client.beta.threads.messages.list(thread_id=my_thread.id))
-        break
-      elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
-        pass
-      else:
-        print(f"Run status: {keep_retrieving_run.status}")
-        break
+          print(client.beta.threads.messages.list(thread_id=my_thread.id))
+          break
+        elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
+          pass
+        else:
+          print(f"Run status: {keep_retrieving_run.status}")
+          break
 
 
