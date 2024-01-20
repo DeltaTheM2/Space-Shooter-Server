@@ -48,4 +48,7 @@ def respondToQuery(query):
           break
     return jsonify(client.beta.threads.messages.list(thread_id=my_thread))
 
+if __name__ == '__main__':
+   app.run(host='0.0.0.0')
+
 
