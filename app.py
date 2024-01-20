@@ -7,18 +7,15 @@ client = openai.Client(api_key=OpenaiApiKey)
 
 my_assistant = client.beta.assistants.retrieve("asst_7bHMEyumWTDCjprU3gpBjVqs")
 
-
-
-my_run = client.beta.threads.runs.create(
-  thread_id=my_thread.id,
-  assistant_id=my_assistant.id
-)
-print(my_run)
 app = Flask(__name__)
 @app.route("/query/<query>")
 def respondToQuery(query):
     my_thread = client.beta.threads.create()
-
+    
+    my_run = client.beta.threads.runs.create(
+      thread_id=my_thread.id,
+      assistant_id=my_assistant.id
+    )
     my_message = client.beta.threads.messages.create(
       thread_id=my_thread.id,
       role= 'user',
