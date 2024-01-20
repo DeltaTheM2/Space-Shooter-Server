@@ -21,7 +21,7 @@ def respondToQuery(query):
     my_run = client.beta.threads.runs.create(
   thread_id=my_thread.id,
   assistant_id=my_assistant.id,
-  instructions= client.beta.threads.thread_id.instructions
+  instructions= my_thread.instructions
 )
     print(f"This is the run object: {my_run} \n")
 
