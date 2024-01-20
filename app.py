@@ -12,15 +12,17 @@ app = Flask(__name__)
 def respondToQuery(query):
     my_thread = client.beta.threads.create()
     
-    my_run = client.beta.threads.runs.create(
-      thread_id=my_thread.id,
-      assistant_id=my_assistant.id
-    )
     my_message = client.beta.threads.messages.create(
       thread_id=my_thread.id,
       role= 'user',
       content= query
     )
+    
+    my_run = client.beta.threads.runs.create(
+      thread_id=my_thread.id,
+      assistant_id=my_assistant.id
+    )
+    
     #all_messages = ""
     keep_retrieving_run = client.beta.threads.runs.retrieve(
     thread_id=my_thread.id,
