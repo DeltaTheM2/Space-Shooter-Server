@@ -21,6 +21,7 @@ def respondToQuery(query):
       role= 'user',
       content= query
     )
+    #all_messages = ""
     while my_run.status in ["queued", "in_progress"]:
         keep_retrieving_run = client.beta.threads.runs.retrieve(
         thread_id=my_thread.id,
@@ -45,5 +46,6 @@ def respondToQuery(query):
         else:
           print(f"Run status: {keep_retrieving_run.status}")
           break
+    return jsonify(client.beta.threads.messages.list(thread_id=my_thread))
 
 
