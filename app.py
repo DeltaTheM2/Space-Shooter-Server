@@ -22,30 +22,23 @@ def respondToQuery(query):
       content= query
     )
     #all_messages = ""
-    while my_run.status in ["queued", "in_progress"]:
-        keep_retrieving_run = client.beta.threads.runs.retrieve(
-        thread_id=my_thread.id,
-        run_id=my_run.id
+    keep_retrieving_run = client.beta.threads.runs.retrieve(
+    thread_id=my_thread.id,
+    run_id=my_run.id
+  )
+    print(f"Run status: {keep_retrieving_run.status}")
+
+    if keep_retrieving_run.status == "completed":
+      print("\n")
+
+      # Step 6: Retrieve the Messages added by the Assistant to the Thread
+      all_messages = client.beta.threads.messages.list(
+          thread_id=my_thread.id
       )
-        print(f"Run status: {keep_retrieving_run.status}")
 
-        if keep_retrieving_run.status == "completed":
-          print("\n")
+      print("------------------------------------------------------------ \n")
 
-          # Step 6: Retrieve the Messages added by the Assistant to the Thread
-          all_messages = client.beta.threads.messages.list(
-              thread_id=my_thread.id
-          )
-
-          print("------------------------------------------------------------ \n")
-
-          #print(client.beta.threads.messages.list(thread_id=my_thread.id))
-          break
-        elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
-          pass
-        else:
-          print(f"Run status: {keep_retrieving_run.status}")
-          break
+      #print(client.beta.threads.messages.list(thread_id=my_thread.id))
     return jsonify(client.beta.threads.messages.list(thread_id=my_thread))
 
 if __name__ == '__main__':
