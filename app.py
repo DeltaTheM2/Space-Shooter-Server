@@ -10,7 +10,19 @@ my_assistant = client.beta.assistants.retrieve("asst_7bHMEyumWTDCjprU3gpBjVqs")
 app = Flask(__name__)
 @app.route("/query/<query>")
 def respondToQuery(query):
-    my_thread = client.beta.threads.create()
+    global KEPT_QUERY, LAST_THREAD_ID
+
+    # If the query is new, create a new thread
+    if query != KEPT_QUERY:
+        KEPT_QUERY = query
+        my_thread = client.beta.threads.create()
+        LAST_THREAD_ID = my_thread.id
+    else:
+        # If the query is the same, use the existing thread
+        if LAST_THREAD_ID is None:
+            return jsonify({"error": "No existing thread to continue."})
+        my_thread = client.beta.threads.retrieve(LAST_THREAD_ID)
+
 
     my_message = client.beta.threads.messages.create(
           thread_id=my_thread.id,
