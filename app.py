@@ -64,7 +64,10 @@ def respondToQuery(query):
         else:
             print(f"Run status: {keep_retrieving_run.status}")
             break
-
+@app.route("/end")
+def endQuery():
+    KEPT_QUERY = ""
+    LAST_THREAD_ID = ""
 if __name__ == '__main__':
    app.run(host='0.0.0.0')
 
