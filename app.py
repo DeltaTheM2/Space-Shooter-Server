@@ -66,6 +66,8 @@ def respondToQuery(query):
         else:
             print(f"Run status: {keep_retrieving_run.status}")
             break
+
+#resetting the global variables to ensure every time the server refreshes.
 @app.route("/end")
 def endQuery():
     KEPT_QUERY = ""
