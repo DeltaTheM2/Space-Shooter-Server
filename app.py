@@ -58,7 +58,7 @@ def respondToQuery(query):
 
             print(f"User: {my_message.content[0].text.value}")
             print(f"Assistant: {all_messages.data[0].content[0].text.value}")
-            return jsonify(all_messages.data[0].content[0].text.value)
+            return jsonify(all_messages.data[0].content[0].text)
 
             break
         elif keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
