@@ -12,7 +12,7 @@ my_assistant = client.beta.assistants.retrieve("asst_7bHMEyumWTDCjprU3gpBjVqs")
 
 app = Flask(__name__)
 CORS(app)
-@app.route("/query/<query>")
+@app.route("/query/<query>", methods=['GET'])
 def respondToQuery(query):
     global KEPT_QUERY, LAST_THREAD_ID
 
