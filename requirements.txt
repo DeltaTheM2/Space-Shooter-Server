@@ -2,4 +2,4 @@ openai
 Flask
 jsonify
 Gunicorn
-CORS
+flask_cors
