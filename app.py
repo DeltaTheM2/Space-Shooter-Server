@@ -67,7 +67,7 @@ def respondToQuery(query):
             print(f"User: {my_message.content[0].text.value}")
             print(f"Assistant: {all_messages.data[0].content[0].text.value}")
             response = all_messages.data[0].content[0].text.value
-            return jsonify(response)
+            return jsonify({"response": response})
 #resetting the global variables to ensure every time the server refreshes.
 @app.route("/end")
 def endQuery():
