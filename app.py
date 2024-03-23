@@ -70,9 +70,10 @@ def respondToQuery(query):
             resp = response.strip()
             return resp
 #resetting the global variables to ensure every time the server refreshes.
-@app.route("/end")
+@app.route("/end", methods=['GET'])
 def endQuery():
     KEPT_QUERY = ""
     LAST_THREAD_ID = ""
+    return "Thread Reset successfully"
 if __name__ == '__main__':
    app.run(host='0.0.0.0')
