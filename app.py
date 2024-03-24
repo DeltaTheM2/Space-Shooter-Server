@@ -75,5 +75,11 @@ def endQuery():
     KEPT_QUERY = ""
     LAST_THREAD_ID = ""
     return "Thread Reset successfully"
+
+@app.route('/ResetThread', methods=['GET'])
+def resetThread():
+    global LAST_THREAD_ID
+    client.beta.threads.delete(thread_id= str(LAST_THREAD_ID))
+
 if __name__ == '__main__':
    app.run(host='0.0.0.0')
