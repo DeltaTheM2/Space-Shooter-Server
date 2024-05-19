@@ -1,12 +1,12 @@
 from flask import Flask, jsonify, request
-import openai
+from openai import OpenAI
 import os
 from flask_cors import CORS
 
 KEPT_QUERY = ""
 LAST_THREAD_ID = None
 OpenaiApiKey = os.environ.get('OpenaiApiKey')
-client = openai.Client(api_key=OpenaiApiKey)
+client = OpenAI(api_key=OpenaiApiKey)
 
 my_assistant = client.beta.assistants.retrieve("asst_7bHMEyumWTDCjprU3gpBjVqs")
 
