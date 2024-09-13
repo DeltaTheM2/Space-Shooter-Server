@@ -2,11 +2,13 @@ from flask import Flask, jsonify, request
 from openai import OpenAI
 import os
 from flask_cors import CORS
+from dotenv import load_dotenv
+load_dotenv()
 
 KEPT_QUERY = ""
 LAST_THREAD_ID = None
-OpenaiApiKey = os.environ.get('OpenaiApiKey')
-client = OpenAI(api_key=OpenaiApiKey)
+OpenaiApiKey = os.environ.get('OPENAI_API_KEY')
+client = OpenAI()
 
 my_assistant = client.beta.assistants.retrieve("asst_7bHMEyumWTDCjprU3gpBjVqs")
 
@@ -82,4 +84,4 @@ def resetThread():
     client.beta.threads.delete(thread_id= str(LAST_THREAD_ID))
 
 if __name__ == '__main__':
-   app.run(host='0.0.0.0')
+   app.run(host='0.0.0.0', port=8080)
